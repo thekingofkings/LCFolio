@@ -5,16 +5,18 @@
     "description": "This extension extracts detailed notes information automatically.",
     "version": "1.0",
 	"background": {
-		"page": "background.html"
+		"scripts": ["eventPage.js"],
+		"persistent": false
 	},
 
     "page_action": {
-	"default_icon": "icon.png",
-	"default_popup" : "popup.html"
+	"default_icon": "icon.png"
+//	"default_popup" : "popup.html"
 	},
     
     "permissions": [
-	"tabs"
+	"tabs",
+	"activeTab"
 	],
 
 	"icons" : {
