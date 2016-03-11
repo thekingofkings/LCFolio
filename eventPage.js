@@ -26,8 +26,9 @@ function check_onActivated( activeInfo )
 chrome.tabs.onActivated.addListener( check_onActivated );
 
 
-
+/*
 chrome.pageAction.onClicked.addListener( function(tab) {
 	console.log(tab.url);
 	console.log(tab.id);
 });
+*/

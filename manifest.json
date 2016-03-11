@@ -1,18 +1,27 @@
 {
     "manifest_version": 2,
-
     "name": "Lending Club Folio",
-    "description": "This extension extracts detailed notes information automatically.",
     "version": "1.0",
+
+    "description": "This extension extracts detailed notes information automatically.",
+
+
 	"background": {
 		"scripts": ["eventPage.js"],
 		"persistent": false
 	},
 
     "page_action": {
-	"default_icon": "icon.png"
-//	"default_popup" : "popup.html"
+		"default_icon": "icon.png",
+		"default_popup" : "popup.html"
 	},
+
+	"content_scripts": [
+	{
+		"matches": ["https://www.lendingclub.com/foliofn/tradingInventory.action/*"],
+		"js": ["crawlPage.js", "jquery-2.2.1.js"]
+	}
+	],
     
     "permissions": [
 	"tabs",
@@ -20,6 +29,7 @@
 	],
 
 	"icons" : {
-		"48": "icon.png"
+		"48": "folio.png",
+		"16": "icon.png"
 	}
 }

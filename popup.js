@@ -1,12 +1,13 @@
 window.onload = function() {
 
-	var details = {tabId: 1};
-	chrome.pageAction.getPopup( details, function(res) {
-		console.log("get html of popup");
-		console.log(res);
-		console.log(details);
+	chrome.tabs.query( {active: true}, function(tabs) {
+		tab = tabs[0];
+		$("#turl").text(tab.url);
+		$("#tid").text(tab.id);
+		chrome.tabs.sendMessage( tab.id, {action: "crawl"}, null, 
+				function(response) {
+					$("#response").text(response);
+				});
 	});
-
-
 
 }
