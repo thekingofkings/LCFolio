@@ -4,14 +4,20 @@
     "name": "Lending Club Folio",
     "description": "This extension extracts detailed notes information automatically.",
     "version": "1.0",
+	"background": {
+		"page": "background.html"
+	},
 
-    "browser_action": {
+    "page_action": {
 	"default_icon": "icon.png",
 	"default_popup" : "popup.html"
 	},
     
     "permissions": [
-	"activeTab",
-	"https://www.google.com"
-	]
+	"tabs"
+	],
+
+	"icons" : {
+		"48": "icon.png"
+	}
 }
