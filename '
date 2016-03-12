@@ -5,10 +5,8 @@ window.onload = function() {
 		$("#task").text("Crawl notes in Tab " + tab.id);
 		chrome.tabs.sendMessage( tab.id, {action: "crawl"}, null, 
 				function(response) {
-					alert(JSON.stringify(response));
-					$(response).each( function(idx, ele) {
-						$("#notes").append('<tr><td>' + ele.id + "</td><td>" + ele.price + 
-							"</td><td>" + ele.markup + "</td><td>" + ele.ytm + "</td></tr>");
+					response.each( function(idx, ele) {
+					$("#notes").text(response);
 					});
 				});
 	});

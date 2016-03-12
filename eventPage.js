@@ -1,11 +1,8 @@
-console.log("eventPage running...");
 
 function check(tab_id, data, tab)
 {
-	console.log(tab.url);
 	if (tab.url.indexOf("www.lendingclub.com/foliofn/tradingInventory.action") > -1) 
 	{
-		console.log(tab_id);
 		chrome.pageAction.show(tab_id);
 	}
 }
