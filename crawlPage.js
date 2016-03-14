@@ -30,14 +30,14 @@ function collectNotes(request, sender, sendRes){
 				if (loan_amt_num <= 26000) {
 					var collection_log = $(loan_page).find("#lcLoanPerf2 tbody").html();
 					var clog_latest = $(loan_page).find("#lcLoanPerf2 tbody > tr").html();
-					if (collection_log == null || clog_latest.indexOf("promised to pay" > -1) || collection_log.indexOf("promised to pay") > -1)  {
+					if (collection_log == null || clog_latest.indexOf("promised to pay") > -1 ) { // || collection_log.indexOf("promised to pay") > -1)  {
 						note.promise = true; 
+						notes.push(note);
 					}
-					notes.push(note);
 				}
 
 				if (cnt == rows.length) {
-					alert(JSON.stringify(notes));
+					//alert(JSON.stringify(notes));
 					sendRes(notes);
 				}
 			});

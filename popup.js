@@ -9,7 +9,8 @@ window.onload = function() {
 					$(response).each( function(idx, ele) {
 						$("#notes").append('<tr><td>' + ele.id + "</td><td>" + ele.price + 
 							"</td><td>" + ele.markup + "</td><td>" + ele.ytm + "</td><td>" + 
-							ele.purpose + "</td><td>" + ele.loan_amount + "</td></tr>");
+							ele.purpose + "</td><td>" + ele.loan_amount + "</td><td>" + 
+							ele.promise + "</td></tr>");
 					});
 				});
 	});
