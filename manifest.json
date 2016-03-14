@@ -18,7 +18,7 @@
 
 	"content_scripts": [
 	{
-		"matches": ["https://www.lendingclub.com/foliofn/tradingInventory.action/*"],
+		"matches": ["https://www.lendingclub.com/foliofn/tradingInventory.action*"],
 		"js": ["crawlPage.js", "jquery-2.2.1.js"]
 	}
 	],
