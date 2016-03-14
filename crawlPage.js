@@ -11,19 +11,29 @@ function collectNotes(request, sender, sendRes){
 			// visit loan page for more information
 
 			$.get(link, function( loan_page ) {
-				var purpose = $(loan_page).find(".data-summary > h3").text().match(/Purpose: (.*) (Loan/)[1];
-				alert(purpose);
+				var purpose = $(loan_page).find(".data-summary > h3").text().match(/Purpose: (.*) (?=\(Loan id: \d+\))/)[1];
+				var loan_amt = $(loan_page).find("#object-details > div tbody > tr:nth-child tbody > tr:nth-child(3) > td").text();
+				var loan_amt_num = parseInt( loan_amt.replace(/[$,]+/g, "") );
+				if (loan_amt_num <= 26000) {
+					var collection_log = $(loan_page).find("#lcLoanPerf2 tbody").html();
+					var clog_latest = $(loan_page).find("#lcLoanPerf2 tbody > tr").html();
+					if (clog_latest.indexOf("promised to pay" > -1) || collection_log.indexOf("promised to pay") > -1) ) {
+						var note = {
+							id: $(ele).find(".yui-dt0-col-loanGUID > div > span").text(),
+							price : $(ele).find(".yui-dt0-col-asking_price > div").text(),
+							markup: $(ele).find(".yui-dt0-col-markup_discount > div").text(),
+							ytm: $(ele).find(".yui-dt0-col-ytm > div").text(),
+							purpose: purpose,
+							loan_amount: loan_amt_num
+						};
+						notes.push(note);
+
+					}
+				}
 
 			});
 
 
-			var note = {
-				id: $(ele).find(".yui-dt0-col-loanGUID > div > span").text(),
-				price : $(ele).find(".yui-dt0-col-asking_price > div").text(),
-				markup: $(ele).find(".yui-dt0-col-markup_discount > div").text(),
-				ytm: $(ele).find(".yui-dt0-col-ytm > div").text()
-			};
-			notes.push(note);
 		});
 
 		alert(JSON.stringify(notes));
