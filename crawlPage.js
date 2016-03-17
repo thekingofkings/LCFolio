@@ -17,7 +17,7 @@ function collectNotes(request, sender, sendRes){
 				ytm: $(ele).find(".yui-dt0-col-ytm > div").text(),
 				purpose: null,
 				loan_amount: null,
-				promise: false
+				promise: "nolog" 
 			};
 
 			$.get(link, function( loan_page ) {
@@ -30,8 +30,17 @@ function collectNotes(request, sender, sendRes){
 				if (loan_amt_num <= 26000) {
 					var collection_log = $(loan_page).find("#lcLoanPerf2 tbody").html();
 					var clog_latest = $(loan_page).find("#lcLoanPerf2 tbody > tr").html();
-					if (collection_log == null || clog_latest.indexOf("promised to pay") > -1 ) { // || collection_log.indexOf("promised to pay") > -1)  {
-						note.promise = true; 
+					var loan_status = $(loan_page).find("#object-details > div:nth-child(1) tbody > tr:nth-child(6) > td").text();
+					if (collection_log == null ) {
+						notes.push(note);
+					} else if (loan_status.indexOf("On Payment Plan") > -1) {
+						note.promise = "plan";
+						notes.push(note);
+					} else if (clog_latest.indexOf("promised to pay") > -1) {
+						note.promise = "latest promise";
+						notes.push(note);
+					} else if (collection_log.indexOf("promised to pay") > -1)  {
+						note.promise = "old promise"; 
 						notes.push(note);
 					}
 				}
